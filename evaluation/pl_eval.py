@@ -63,6 +63,7 @@ def main():
                         help="filename of the leaderboard predictions, in txt format.")
     parser.add_argument('--lang', type=str, required=True, help='name of the programming language',
                         choices=['java', 'python', 'cpp', 'c_sharp'])
+    parser.add_argument('--output', type=str, default=None, help='output file to save the scores.')
     # parser.add_argument('--detokenize', action='store_true',
                         # help="detokenize both predictions and reference code.")
     args = parser.parse_args()
@@ -136,6 +137,15 @@ def main():
             print(f"{k}: {v:.2f}")
         elif isinstance(v, list) and v:
             print(f"{k}: {max(v):.2f}")
+
+    # write to output file
+    if args.output is not None:
+        with open(args.output, 'w', encoding='utf-8') as f:
+            for k, v in scores.items():
+                if isinstance(v, float):
+                    f.write(f"{k}: {v:.2f}\n")
+                elif isinstance(v, list) and v:
+                    f.write(f"{k}: {max(v):.2f}\n")
 
 
 if __name__ == "__main__":
