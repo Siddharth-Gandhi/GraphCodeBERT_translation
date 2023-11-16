@@ -3,13 +3,17 @@ target=cs
 beam_size=10
 source_length=320
 target_length=256
-output_dir=saved_models/$source-$target/
+# output_dir=saved_models/$source-$target/
+output_dir=data/$source-$target/replication_results
 pretrained_model=microsoft/graphcodebert-base
 
-batch_size=64
-dev_file=data/java_cs/valid.java-cs.txt.$source,data/java_cs/valid.java-cs.txt.$target
-test_file=data/java_cs/test.java-cs.txt.$source,data/java_cs/test.java-cs.txt.$target
-load_model_path=$output_dir/checkpoint-best-bleu/pytorch_model.bin #checkpoint for test
+batch_size=128
+dev_file=data/java-cs/valid.java-cs.txt.$source,data/java-cs/valid.java-cs.txt.$target
+test_file=data/java-cs/test.java-cs.txt.$source,data/java-cs/test.java-cs.txt.$target
+# load_model_path=$output_dir/checkpoint-best-bleu/pytorch_model.bin #checkpoint for test
+load_model_path=saved_models/$source-$target/checkpoint-best-bleu/pytorch_model.bin #checkpoint for test
+
+mkdir -p $output_dir
 
 python run.py \
 --do_test \
