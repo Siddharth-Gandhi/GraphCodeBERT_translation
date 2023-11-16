@@ -11,8 +11,8 @@ batch_size=64
 evaluation_script="evaluation/pl_eval.py"
 
 # Define the experiment types
-# declare -a experiments=("easy" "medium" "hard" "non_class_or_function" "has_class_or_function")
-declare -a experiments=("easy")
+declare -a experiments=("easy" "medium" "hard" "non_class_or_function" "has_class_or_function")
+# declare -a experiments=("easy")
 
 # Define the source and target languages for the loop
 declare -a languages=("cs-java" "java-cs")
