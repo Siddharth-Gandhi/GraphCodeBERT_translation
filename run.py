@@ -27,6 +27,7 @@ import logging
 import os
 import pickle
 import random
+import re
 import sys
 from io import open
 from itertools import cycle
@@ -95,6 +96,30 @@ for lang in dfg_function:
     parser.set_language(LANGUAGE)
     parser = [parser,dfg_function[lang]]
     parsers[lang]= parser
+
+def format_code(code):
+    # Remove spaces before and after curly braces, parentheses, and semicolons
+    code = re.sub(r'//.*', '', code)
+
+    # Remove multi-line comments
+    code = re.sub(r'/\*.*?\*/', '', code, flags=re.DOTALL)
+
+    # Replace multiple spaces with a single space
+    code = re.sub(r'\s+', ' ', code)
+
+    # Remove spaces before and after each line
+    code = re.sub(r'^\s+|\s+?$', '', code)
+
+    # Remove spaces before and after newlines
+    code = re.sub(r'\s*\n\s*', '\n', code)
+    code = code.replace(" {", "{").replace("} ", "}").replace("( ", "(").replace(" )", ")").replace(";", ";")
+    code = code.replace("{ ", "{").replace(" }", "}").replace(" (", "(").replace(" )", ")").replace("; ", ";")
+
+
+
+    # Optional: further formatting can be added here as needed
+
+    return code
 
 #remove comments, tokenize code and extract dataflow
 def extract_dataflow(code, parser,lang):
@@ -584,10 +609,12 @@ def main():
                 accs=[]
                 with open(os.path.join(args.output_dir,"dev.output"),'w') as f, open(os.path.join(args.output_dir,"dev.gold"),'w') as f1:
                     for ref,gold in zip(p,eval_examples):
+                        ref = format_code(ref)
+                        gt = format_code(gold.target)
                         predictions.append(ref)
                         f.write(ref+'\n')
-                        f1.write(gold.target+'\n')
-                        accs.append(ref==gold.target)
+                        f1.write(gt+'\n')
+                        accs.append(ref==gt)
 
                 dev_bleu=round(_bleu(os.path.join(args.output_dir, "dev.gold"), os.path.join(args.output_dir, "dev.output")),2)
                 xmatch=round(np.mean(accs)*100,4)
@@ -641,10 +668,12 @@ def main():
             accs=[]
             with open(os.path.join(args.output_dir,"test_{}.output".format(str(idx))),'w') as f, open(os.path.join(args.output_dir,"test_{}.gold".format(str(idx))),'w') as f1:
                 for ref,gold in zip(p,eval_examples):
+                    ref = format_code(ref)
+                    gt = format_code(gold.target)
                     predictions.append(ref)
                     f.write(ref+'\n')
-                    f1.write(gold.target+'\n')
-                    accs.append(ref==gold.target)
+                    f1.write(gt+'\n')
+                    accs.append(ref==gt)
             dev_bleu=round(_bleu(os.path.join(args.output_dir, "test_{}.gold".format(str(idx))).format(file),
                                  os.path.join(args.output_dir, "test_{}.output".format(str(idx))).format(file)),2)
             logger.info("  %s = %s "%("bleu-4",str(dev_bleu)))
