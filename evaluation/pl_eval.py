@@ -92,18 +92,18 @@ def main():
         split_translations = []
         split_references = []
         for pred, ref in zip(preds, refs):
-            if args.lang == 'java':
-                pred = ignore_prefix(pred, ['public'])
-                ref = ignore_prefix(ref, ['public'])
-            elif args.lang == 'python':
-                pass
-            elif args.lang == 'cpp':
-                pred = ignore_prefix(pred, ['private :', 'public :'])
-                ref = ignore_prefix(ref, ['private :', 'public :'])
+            # if args.lang == 'java':
+            #     pred = ignore_prefix(pred, ['public'])
+            #     ref = ignore_prefix(ref, ['public'])
+            # elif args.lang == 'python':
+            #     pass
+            # elif args.lang == 'cpp':
+            #     pred = ignore_prefix(pred, ['private :', 'public :'])
+            #     ref = ignore_prefix(ref, ['private :', 'public :'])
 
-            elif args.lang == 'c-sharp':
-                pred = ignore_prefix(pred, ['public'])
-                ref = ignore_prefix(ref, ['public'])
+            # elif args.lang == 'c-sharp':
+            #     pred = ignore_prefix(pred, ['public'])
+            #     ref = ignore_prefix(ref, ['public'])
 
             # if args.detokenize:
             #     pred = LANG_PROCESSORS[args.lang].detokenize_code(pred)
