@@ -1,10 +1,12 @@
-source=java
-target=cs
+source=cs
+target=java
 beam_size=10
 source_length=320
 target_length=256
 output_dir=data/$source-$target/exp_results/
 pretrained_model=microsoft/graphcodebert-base
+
+echo "Run exp for $source to $target"
 
 mkdir -p $output_dir
 
