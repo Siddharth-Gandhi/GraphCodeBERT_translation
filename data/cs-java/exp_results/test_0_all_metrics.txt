@@ -1,5 +1,5 @@
 EM: 3.23
-BLEU: 30.47
+BLEU: 31.11
 ngram_match_score: 30.43
 weighted_ngram_match_score: 31.64
 syntax_match_score: 57.27
