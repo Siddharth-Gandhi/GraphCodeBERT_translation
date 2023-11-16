@@ -1,17 +1,16 @@
-%%bash
 source=java
 target=cs
 beam_size=10
 source_length=320
 target_length=256
-output_dir=data/exps/results/$source-$target
+output_dir=data/$source-$target/exp_results/
 pretrained_model=microsoft/graphcodebert-base
 
 mkdir -p $output_dir
 
 batch_size=64
 # dev_file=data/java-cs/valid.java-cs.txt.$source,data/java-cs/valid.java-cs.txt.$target
-test_file=data/java-cs/exps/exp_java2cs.txt.$source,data/java-cs/exps/exp_java2cs.txt.$target
+test_file=data/exps/exp_java2cs.txt.$source,data/exps/exp_java2cs.txt.$target
 load_model_path=saved_models/$source-$target/checkpoint-best-bleu/pytorch_model.bin #checkpoint for test
 
 python run.py \

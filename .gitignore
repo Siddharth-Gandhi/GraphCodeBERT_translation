@@ -1,5 +1,7 @@
 evaluation/CodeBLEU/parser
 exps/
+tmp/
+
 # all folders inside parser/ that begin with tree-sitter-
 parser/tree-sitter-*/
 saved_models/
