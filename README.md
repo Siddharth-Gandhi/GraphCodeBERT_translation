@@ -45,7 +45,7 @@ To train the model, run the following command:
 bash run_training.sh
 ```
 
-Each of the 2 models (Java2C# and C#2Java) waas trained on 2 A6000 Gpus for 100 epochs which took about 4.2 hours. The trained models are available in the Google Drive link above.
+Each of the 2 models (Java2C# and C#2Java) was trained on 2 A6000 Gpus for 100 epochs which took about 4.2 hours. The trained models are available in the Google Drive link above.
 
 ### Replication
 
