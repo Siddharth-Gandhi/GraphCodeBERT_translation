@@ -63,3 +63,5 @@ bash run_exps.sh
 ```
 
 We also have micro_experiments available in the [data/exps](data/exps) folder. These look at results specific to just parts of the custom dataset like just easy questions or questions without multiple functions in the answer. The results for these experiments are available in the [data/exps/micro_exps_results](data/exps/micro_exps_results) folder.
+
+For each experiments, the gold file, the predicted output file and metrics file is available in the [data](data) folder. We evaluate them using BLEU, CodeBLEU, Exact Match, among other metrics.
