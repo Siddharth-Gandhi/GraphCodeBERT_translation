@@ -1,0 +1,5 @@
+Arjun Choudhry: Literature Review, Conceptualisation of the problem, Problem ideation, designing the proposed approach, report writing, formal analysis
+
+Piyush Khanna: Baseline replication, model finetuning, creation of the codeforces dataset, table creation, formal analysis
+
+Siddharth Gandhi: Baseline replication, creation of the LeetCode dataset, quantitative and and qualitative results generation, qualitative analysis, additional metrics
